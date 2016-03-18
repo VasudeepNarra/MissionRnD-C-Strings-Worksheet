@@ -15,39 +15,37 @@ NOTES: If there are no common words return NULL.
 #include <malloc.h>
 #include<string.h>
 #define SIZE 31
-
+#include<string.h>
 char ** commonWords(char *str1, char *str2) {
+	if (str1 == NULL || str1 == '\0' || str1 == " " || str2 == NULL || str2 == '\0' || str2 == " ")
+		return NULL;
+	char st[50], st1[50];
+	int j;
+	char **str = (char**)malloc(sizeof(char*) * 10);
+	for (j = 0; j<10; j++)
+	{
+		str[j] = (char*)malloc(31);
+	}
+	int i = 0;
+	strcpy(st, str1);
+	strcpy(st1, str2);
+	char *word = strtok(st, " ");;
 
-	/*int i = 0, j = 0, temp1, temp2, k = 0; char  **res = NULL;;
-	while (str1[i]!='\0')
+	while (word != NULL)
 	{
-	while (str2[j]!='\0')
-	{
-	if (str1[i] == str2[j])
-	{
-	int p = 0;
-	temp1 = i;
-	temp2 = j;
-	res[k][p] = str1[i];
-	p++;
-	while (str1[i+1] == str2[j+1])
-	{
-	res[k][p] = str1[i];
-	p++; i++; j++;
+		if (strstr(st1, word))
+		{
+			strcpy(str[i], word);
+			printf("%s\n", str[i]);
+			i++;
+		}
+
+		word = strtok(NULL, " ");
 	}
-	if (str1[i] != ' ' && str2[j] != ' ')
-	{
-	res[k][0] = '\0';
-	i = temp1 - 1; j = temp2;
-	}
-	else{
-	res[k][p] = '\0'; k++;
-	}
-	}
-	else j++;
-	}
-	i++;
-	}
-	return res;
-	*/return NULL;
+	if (i == 0)
+		return NULL;
+	return str;
+
+
+
 }
